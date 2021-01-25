@@ -13,7 +13,7 @@ namespace DelegatesDemoProject
 
     public delegate void RectangleDelegate(double height, double width);
 
-   
+
     public class Program
     {
         static void Main(string[] args)
@@ -28,21 +28,35 @@ namespace DelegatesDemoProject
             recDelegate += p.RectanglePerimeter;   // MultiCasting
 
             recDelegate(10.3, 20.45); // Invokes both methods 
-            
+
+            //For Events
+
+            TransformerDelegate transformer = EventsDemo.Square;
+            transformer += EventsDemo.Cube;
+
+            transformer.Invoke(3);
+
+            NotificationClass notification = new NotificationClass();
+
+            notification.publisher += Subscriber1.EventHandler1;
+            notification.publisher -= Subscriber2.EventHandler2;
+
+            notification.Notify(3);
+
+
         }
+
+            //Calculate Area
+            public void RectangleArea(double height, double width)
+            {
+                Console.WriteLine("Area  : " + 3.14 * height * width);
+            }
+
+            //Calculate Perimeter
+            public void RectanglePerimeter(double height, double width)
+            {
+                Console.WriteLine("Perimeter  : " + 2 * height * width);
+            }
         
-        //Calculate Area
-        public void RectangleArea(double height, double width)
-        {
-            Console.WriteLine("Area  : " + 3.14 * height * width);
-        }
-
-        //Calculate Perimeter
-        public  void RectanglePerimeter(double height, double width)
-        {
-            Console.WriteLine("Perimeter  : " + 2 * height * width);
-        }
-
-
     }
 }
