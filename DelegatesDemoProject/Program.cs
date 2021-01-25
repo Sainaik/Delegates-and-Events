@@ -28,10 +28,7 @@ namespace DelegatesDemoProject
             recDelegate += p.RectanglePerimeter;   // MultiCasting
 
             recDelegate(10.3, 20.45); // Invokes both methods 
-
             
-
-           
         }
         
         //Calculate Area
