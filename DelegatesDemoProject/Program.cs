@@ -11,10 +11,9 @@ namespace DelegatesDemoProject
     /// Declare a delegates here
     /// </summary>
 
-    public delegate void MyAddDelegate(int a, int b);
+    public delegate void RectangleDelegate(double height, double width);
 
-    public delegate int MyDiffDelegate(int a, int b);
-    
+   
     public class Program
     {
         static void Main(string[] args)
@@ -24,37 +23,27 @@ namespace DelegatesDemoProject
             ///Delegate for Instance method
             // Instantiate a delegate
 
-            MyAddDelegate delegate1 = new MyAddDelegate(p.Add);
+            RectangleDelegate recDelegate = p.RectangleArea;
 
-            // Invoke a delegate 
+            recDelegate += p.RectanglePerimeter;   // MultiCasting
 
-            delegate1(1, 2);
+            recDelegate(10.3, 20.45); // Invokes both methods 
 
-            //Other way to Invoke
+            
 
-            delegate1.Invoke(1, 3);
-
-            ///Delegate for Static method
-            // Instantiate a delegate
-
-            MyDiffDelegate delegate2 = new MyDiffDelegate(Program.Difference);
-
-            int diff = delegate2(4, 3);
-
-            Console.WriteLine(diff);
-
+           
         }
         
-        //instance method to add 
-        public void Add(int a , int b)
+        //Calculate Area
+        public void RectangleArea(double height, double width)
         {
-            Console.WriteLine(a + b);
+            Console.WriteLine("Area  : " + 3.14 * height * width);
         }
 
-        //static method for difference
-        public static int Difference(int a, int b)
+        //Calculate Perimeter
+        public  void RectanglePerimeter(double height, double width)
         {
-            return a - b;
+            Console.WriteLine("Perimeter  : " + 2 * height * width);
         }
 
 
